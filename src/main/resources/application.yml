@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: loyalty-bot
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+bot:
+  token: 8491657930:AAFOyYr5HnJT3pejEhDlQ2ImGs0Sy403Cok
+  username: flankrbot
+
+logging:
+  level:
+    com.loyaltycards: DEBUG
