@@ -21,6 +21,8 @@ public class LoyaltyCard {
 
     @Column(nullable = false)
     private String cardNumber;
+    private Integer points = 0;
+
 
     private String barcode;
     private String description;
@@ -57,4 +59,26 @@ public class LoyaltyCard {
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    // ➕ ДОБАВЬТЕ эти методы в конец класса:
+    public Integer getPoints() { return points; }
+    public void setPoints(Integer points) {
+        this.points = points;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    // 💰 Методы для работы с баллами
+    public void addPoints(Integer amount) {
+        this.points = (this.points == null ? 0 : this.points) + amount;
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    public void deductPoints(Integer amount) throws IllegalStateException {
+        if (this.points == null || this.points < amount) {
+            throw new IllegalStateException("Недостаточно баллов для списания");
+        }
+        this.points = this.points - amount;
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }
